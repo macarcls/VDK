@@ -1,0 +1,15 @@
+﻿<Window x:Class="VDK.Image_zoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VDK"
+        mc:Ignorable="d"
+        Title="Image_zoom" Closing="Window_Closing" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" CacheMode="BitmapCache">
+    <Grid>
+        <!-- Кастомный бордер и изображением (бордер находится в файле ZoomBorder) -->
+        <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
+            <Image x:Name="image"/>
+        </local:ZoomBorder>
+    </Grid>
+</Window>

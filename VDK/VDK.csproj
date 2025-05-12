@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="assets\ipvs_logo.png" />
+    <None Remove="assets\Sibur_logo_RU_RGB.png" />
+    <None Remove="assets\spiner.gif" />
+    <None Remove="assets\vdk_logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MaterialDesignColors" Version="5.2.2-ci942" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.2.2-ci942" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\ipvs_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\Sibur_logo_RU_RGB.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\spiner.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\vdk_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
