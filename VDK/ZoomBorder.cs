@@ -15,7 +15,6 @@ namespace VDK
         private UIElement? child = null;
         private Point origin;
         private Point start;
-        private Matrix matrix;
 
         // TT служит для перемещения изобр.
         private TranslateTransform GetTranslateTransform(UIElement element)
@@ -72,6 +71,7 @@ namespace VDK
 
                 /* Попытка сделать сенсорный ввод */
 
+                this.IsManipulationEnabled = true;
                 this.ManipulationStarting += child_ManipulationStarted;
                 this.ManipulationDelta += child_ManipulationDelta;
             }
