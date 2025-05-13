@@ -15,6 +15,7 @@ namespace VDK
         private UIElement? child = null;
         private Point origin;
         private Point start;
+        private Matrix matrix;
 
         // TT служит для перемещения изобр.
         private TranslateTransform GetTranslateTransform(UIElement element)
@@ -28,6 +29,11 @@ namespace VDK
         {
             return (ScaleTransform)((TransformGroup)element.RenderTransform)
               .Children.First(tr => tr is ScaleTransform);
+        }
+
+        private MatrixTransform GetMatrixTransform(UIElement element)
+        {
+            return (MatrixTransform)((TransformGroup)element.RenderTransform).Children.First(tr => tr is MatrixTransform);
         }
 
         // конструктор для Child из Border
@@ -53,6 +59,8 @@ namespace VDK
                 group.Children.Add(st);
                 TranslateTransform tt = new TranslateTransform();
                 group.Children.Add(tt);
+                MatrixTransform mt = new MatrixTransform();
+                group.Children.Add(mt);
                 child.RenderTransform = group;
                 child.RenderTransformOrigin = new Point(0.0, 0.0);
                 this.MouseWheel += child_MouseWheel;
@@ -61,6 +69,10 @@ namespace VDK
                 this.MouseMove += child_MouseMove;
                 this.PreviewMouseRightButtonDown += new MouseButtonEventHandler(
                   child_PreviewMouseRightButtonDown);
+
+                /* Попытка сделать сенсорный ввод */
+
+                this.ManipulationStarting += child_ManipulationStarted;
             }
         }
 
@@ -82,7 +94,7 @@ namespace VDK
         }
 
         #region Child Events
-        /* Обработчики */
+        /* Обработчики Mouse */
         
         private void child_MouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -147,6 +159,35 @@ namespace VDK
                     tt.X = origin.X - v.X;
                     tt.Y = origin.Y - v.Y;
                 }
+            }
+        }
+
+        /* Обработчики Manipulation */
+
+        private void child_ManipulationStarted(object sender, ManipulationStartingEventArgs e)
+        {
+            if (child != null)
+            {
+                e.ManipulationContainer = this;
+                e.Handled = true;
+            }
+        }
+
+        private void child_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            if (child != null)
+            {
+                Matrix mt = GetMatrixTransform(child).Matrix;
+
+                // Перемещение
+                mt.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
+
+                // Масштабирование
+                mt.ScaleAt(e.DeltaManipulation.Scale.X,
+                           e.DeltaManipulation.Scale.Y,
+                           e.ManipulationOrigin.X,
+                           e.ManipulationOrigin.Y
+                    );
             }
         }
 
