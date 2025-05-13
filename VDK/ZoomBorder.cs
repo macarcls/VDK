@@ -73,6 +73,7 @@ namespace VDK
                 /* Попытка сделать сенсорный ввод */
 
                 this.ManipulationStarting += child_ManipulationStarted;
+                this.ManipulationDelta += child_ManipulationDelta;
             }
         }
 
