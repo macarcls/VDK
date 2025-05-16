@@ -26,10 +26,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-     
+
         _viewModel = new Resourses();
         DataContext = _viewModel;
-        
+        DataContext = new View_Model_INPC();
     }
 
     private void Upload_photo_Click(object sender, RoutedEventArgs e)
