@@ -27,9 +27,9 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        _viewModel = new Resourses();
-        DataContext = _viewModel;
-        DataContext = new View_Model_INPC();
+        _viewModel = new Resourses(); 
+        DataContext = _viewModel; // <--- эта модель для ссылки на изображение (отдельным файлом т.к. нет надобности в реализации интерфейса INPC)
+        DataContext = new View_Model_INPC(); // <--- эта модель реализуер интерфейс (для выбора типа обработки изображения)
     }
 
     private void Upload_photo_Click(object sender, RoutedEventArgs e)

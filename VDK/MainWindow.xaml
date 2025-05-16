@@ -96,17 +96,15 @@
                         </Border>
                     </DockPanel>
                     <!-- График -->
-                    <Border  Background="#FFFFFF" MinHeight="600" MinWidth="200" Grid.Column="2" BorderBrush="#77e2c3" CornerRadius="5" Padding="10" BorderThickness="1"  Margin="5">
-                        <ItemsControl ItemsSource="{Binding}">
-                            <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left">
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="Диапазон площадей объектов, мкм²" Labels="{Binding Labels}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisX>
-                                <lvc:CartesianChart.AxisY >
-                                    <lvc:Axis  Title="Процент от общего числа объектов" LabelFormatter="{Binding Formatter}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisY>
-                            </lvc:CartesianChart>
-                        </ItemsControl>
+                    <Border DataContext="{Binding Selected}" Background="#FFFFFF" MinHeight="600" MinWidth="200" Grid.Column="2" BorderBrush="#77e2c3" CornerRadius="5" Padding="10" BorderThickness="1"  Margin="5">
+                        <lvc:CartesianChart Series="{Binding SC, UpdateSourceTrigger=PropertyChanged}" LegendLocation="Left">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Title="Диапазон площадей объектов, мкм²" Labels="{Binding Lab, UpdateSourceTrigger=PropertyChanged}"></lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY >
+                                <lvc:Axis  Title="Процент от общего числа объектов" LabelFormatter="{Binding Form, UpdateSourceTrigger=PropertyChanged}"></lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
                     </Border>
                 </StackPanel>
             </Border>
